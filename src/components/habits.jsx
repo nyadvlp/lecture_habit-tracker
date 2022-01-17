@@ -3,18 +3,36 @@ import Habit from './habit';
 
 class Habits extends Component {
     state = {
-        habits : [
-            {id: 1, name: 'Reading', count: 0},
-            {id: 2, name: 'Coding', count: 1},
-            {id: 3, name: 'Swimming', count: 2},
+        habits: [
+            { id: 1, name: 'Reading', count: 0 },
+            { id: 2, name: 'Coding', count: 0 },
+            { id: 3, name: 'Swimming', count: 0 },
         ],
     };
+
+    handleIncrement = (habit) => {
+        console.log(`habitsjsx handleIncrement ${habit.name}`);
+    }
+
+    handleDecrement = (habit) => {
+        console.log(`habitsjsx handleDecrement ${habit.name}`);
+    }
+
+    handleDelete = (habit) => {
+        console.log(`habitsjsx handleDelete ${habit.name}`);
+    }
 
     render() {
         return (
             <ul>
                 {this.state.habits.map(habit => (
-                    <Habit key = {habit.id} habit = {habit} />
+                    <Habit 
+                        key={habit.id} 
+                        habit={habit} 
+                        onIncrement={this.handleIncrement} 
+                        onDecrement={this.handleDecrement} 
+                        onDelete={this.handleDelete} 
+                        />
                 ))}
             </ul>
         );

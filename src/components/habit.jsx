@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
 
 class Habit extends Component {
-    state = {
-      count: 0,  
-    };
+
 
     handleIncrement = () => {
-        // state 오브젝트의 count를 증가하고 state를 업데이트
-        this.setState({count: this.state.count +1 });
+        this.props.onIncrement(this.props.habit);
     }
 
     handleDecrement = () => {
-        // 음수가 되지 않도록 처리
-        const count = this.state.count - 1;
+        this.props.onDecrement(this.props.habit);
+    }
 
-        // state 오브젝트의 count를 감소하고 state를 업데이트
-        this.setState({count: count < 0 ? 0 : count});
+    handleDelete = () => {
+        this.props.onDelete(this.props.habit);
     }
 
     render() {
@@ -23,7 +20,7 @@ class Habit extends Component {
 
         return (
             <>
-            <span>here is habit.jsx</span><br/>
+                <span>here is habit.jsx</span><br />
                 <li className="habit">
                     <span className="habit-name">{name}</span>
                     <span className="habit-count">{count}</span>
@@ -33,7 +30,7 @@ class Habit extends Component {
                     <button className="habit-button habit-decrease" onClick={this.handleDecrement}>
                         <i className="fas fa-minus-square"></i>
                     </button>
-                    <button className="habit-button habit-delete">
+                    <button className="habit-button habit-delete" onClick={this.handleDelete}>
                         <i className="fas fa-trash"></i>
                     </button>
                 </li>
